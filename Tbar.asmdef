@@ -1,0 +1,8 @@
+﻿{
+  "name": "TBar",
+  "rootNamespace": "TBar.Editor",
+  "references": [],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement>
+        <ui:Label text="TBar" display-tooltip-when-elided="true" name="Title" style="font-size: 20px; -unity-font-style: bold; white-space: nowrap; -unity-text-align: upper-left;" />
+    </ui:VisualElement>
+    <ui:VisualElement>
+        <ui:Label display-tooltip-when-elided="true" name="labelHint" />
+    </ui:VisualElement>
+    <ui:ScrollView name="toolbarScrollView" focusable="true" style="flex-direction: row;" />
+    <ui:VisualElement style="flex-direction: row-reverse;">
+        <ui:Button text="保存并应用" display-tooltip-when-elided="true" name="btnApply" style="width: 200px; flex-direction: row; align-items: stretch; white-space: nowrap; -unity-text-align: middle-center; flex-basis: 200px;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,12 +1,12 @@
 {
-  "name": "com.kakacoding.customtoolbar",
+  "name": "com.kakacoding.tbar",
   "version": "1.0.0",
   "unity": "2021.3",
   "author": {
     "name": "Hu bin",
     "email": "kakacoding@gmail.com"
   },
-  "displayName": "CustomToolbar",
+  "displayName": "TBar",
   "description": "\u81ea\u5b9a\u4e49Unity\u5f15\u64ce\u7684\u5de5\u5177\u6761",
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1"

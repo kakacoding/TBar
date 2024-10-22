@@ -12,7 +12,7 @@ namespace TBar.Editor
     internal static partial class TBarUtility
     {
         private const string PACKAGE_NAME = "com.kakacoding.tbar";
-        private static readonly List<string> StyleFiles = new() {$"Packages/{PACKAGE_NAME}/Editor/TBar/UI/Styles.uss"};
+        private static readonly List<string> StyleFiles = new() {$"Packages/{PACKAGE_NAME}/Editor/UI/Styles.uss"};
 
         internal static void AttachStyles(VisualElement visualElement)
         {

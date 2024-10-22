@@ -9,7 +9,7 @@ namespace TBar.Editor
 {
 	internal class TBarSettingsProvider : SettingsProvider
 	{
-		private const string UXML = "Packages/com.kakacoding.tbar/Editor/TBar/UI/ProviderSettings.uxml";
+		private const string UXML = "Packages/com.kakacoding.tbar/Editor/UI/ProviderSettings.uxml";
 		private const string SETTING_PROVIDER_PATH = "Project/TBar";
 		private SerializedObject _toolbarSettings;
 		private static ListView _toolbarListView;

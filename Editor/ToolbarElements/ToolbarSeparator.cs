@@ -38,7 +38,7 @@ namespace TBar.Editor
 						SeparatorPx = DefaultPx;
 					}
 				},
-				new[]{5,10,15}));
+				new[]{5, 10, 15, 20}));
 		}
 
 		protected override void OnDrawInToolbar(VisualElement container)

@@ -1,9 +1,14 @@
 #if UNITY_EDITOR && TBAR
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
+using UnityEngine.Windows;
+using Directory = System.IO.Directory;
 
 namespace TBar.Editor
 {
@@ -11,9 +16,11 @@ namespace TBar.Editor
 	{
 		private const string UXML = "Packages/com.kakacoding.tbar/Editor/UI/ProviderSettings.uxml";
 		private const string SETTING_PROVIDER_PATH = "Project/TBar";
+		private const string DEFAULT_CONFIG_NAME = "Default";
+		private const string CONFIG_DIR = "ProjectSettings/TBar";
 		private SerializedObject _toolbarSettings;
 		private static ListView _toolbarListView;
-		
+
 		private static readonly Type[] ToolbarElementTypes =
 		{
 			typeof(ToolbarMenuInvoke),
@@ -23,9 +30,11 @@ namespace TBar.Editor
 			typeof(ToolbarSceneOpen),
 			typeof(ToolbarWorkspace),
 		};
-		
-		private TBarSettingsProvider(string path, SettingsScope scopes = SettingsScope.User) : base(path, scopes){}
-		
+
+		private TBarSettingsProvider(string path, SettingsScope scopes = SettingsScope.User) : base(path, scopes)
+		{
+		}
+
 		[SettingsProvider]
 		public static SettingsProvider CreateProvider()
 		{
@@ -35,12 +44,36 @@ namespace TBar.Editor
 			};
 		}
 
+		private static SortedDictionary<string, string> ConfigMap 
+		{
+			get
+			{
+				var files = Directory.GetFiles(CONFIG_DIR);
+				var map = new SortedDictionary<string, string>();
+				foreach (var file in files)
+				{
+					var name = Path.GetFileNameWithoutExtension(file);
+					map[name] = file;
+				}
+				return map;
+			}
+		}
+
 		private static void ActivateHandler(string _, VisualElement rootElement)
 		{
 			var window = EditorGUIUtility.Load(UXML) as VisualTreeAsset;
 			if (window == null) return;
 			window.CloneTree(rootElement);
 			TBarUtility.AttachStyles(rootElement);
+
+			var dropdownField = rootElement.Q<DropdownField>("selectConfig");
+			dropdownField.choices = ConfigMap.Keys.ToList();
+			dropdownField.value = dropdownField.choices[0];
+			rootElement.Q<Button>("btnCreate").clicked += OnCreateConfig;
+			rootElement.Q<Button>("btnDel").clicked += OnDelConfig;
+			rootElement.Q<Button>("btnCopy").clicked += OnCopyConfig;
+			rootElement.Q<Button>("btnRename").clicked += OnRenameConfig;
+			
 			var sv = rootElement.Q<ScrollView>("toolbarScrollView");
 			_toolbarListView = new ListView(TBarConfig.Instance.Elements, 20, () =>
 			{
@@ -99,8 +132,47 @@ namespace TBar.Editor
 			});
 
 			sv.Add(_toolbarListView);
-			var btnApply = rootElement.Q<Button>("btnApply");
-			btnApply.clicked += () => { TBarConfig.Instance.Save(); };
+			
+			
+			rootElement.Q<Button>("btnApply").clicked += TBarConfig.Instance.Save;
+		}
+
+		private static void CreateConfig(string name)
+		{
+			var path = Path.Combine(CONFIG_DIR, $"{name}.json");
+			new TBarConfig().Save(path);
+		}
+		private static void OnCreateConfig()
+		{
+			var defaultNewName = "NewConfig";
+			var names = Directory.GetFiles(CONFIG_DIR).Select(Path.GetFileNameWithoutExtension).ToList();
+			if (names.Contains(defaultNewName))
+			{
+				for (var i = 0; i <= names.Count;++i)
+				{
+					var name = $"{defaultNewName}{i + 1}";
+					if (names.Contains(name)) continue;
+					CreateConfig(name);
+					return;
+				}
+			}
+			CreateConfig(defaultNewName);
+			
+		}
+		
+		private static void OnDelConfig()
+		{
+			
+		}
+		
+		private static void OnCopyConfig()
+		{
+			
+		}
+		
+		private static void OnRenameConfig()
+		{
+			
 		}
 
 		internal static bool IsToolbarElementValid(Type t)

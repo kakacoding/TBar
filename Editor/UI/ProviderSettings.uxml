@@ -2,8 +2,12 @@
     <ui:VisualElement>
         <ui:Label text="TBar" display-tooltip-when-elided="true" name="Title" style="font-size: 20px; -unity-font-style: bold; white-space: nowrap; -unity-text-align: upper-left;" />
     </ui:VisualElement>
-    <ui:VisualElement>
-        <ui:Label display-tooltip-when-elided="true" name="labelHint" />
+    <ui:VisualElement style="flex-direction: row;">
+        <ui:DropdownField label="选择配置" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="selectConfig" style="max-width: 300px; flex-direction: row; width: 304px;" />
+        <ui:Button text="新增配置" display-tooltip-when-elided="true" name="btnCreate" />
+        <ui:Button text="复制配置" display-tooltip-when-elided="true" name="btnCopy" />
+        <ui:Button text="删除配置" display-tooltip-when-elided="true" name="btnDel" />
+        <ui:Button text="配置改名" display-tooltip-when-elided="true" name="btnRename" />
     </ui:VisualElement>
     <ui:ScrollView name="toolbarScrollView" focusable="true" style="flex-direction: row;" />
     <ui:VisualElement style="flex-direction: row-reverse;">

@@ -7,7 +7,7 @@ namespace TBar.Editor
 {
 	internal class TBarConfig
 	{
-		private const string ConfigPath = "ProjectSettings/TBar/TBarConfig.json";
+		private const string ConfigPath = "ProjectSettings/TBar/Default.json";
 		[JsonProperty]
 		internal List<BaseToolbarElement> Elements { get; set; } = new();
 		private static readonly JsonSerializerSettings JsonSetting = new()
@@ -42,6 +42,12 @@ namespace TBar.Editor
 		{
 			var json = JsonConvert.SerializeObject(this, Formatting.Indented, JsonSetting);
 			File.WriteAllText(ConfigPath, json);
+			ToolbarExtender.Reload();
+		}
+		internal void Save(string path)
+		{
+			var json = JsonConvert.SerializeObject(this, Formatting.Indented, JsonSetting);
+			File.WriteAllText(path, json);
 			ToolbarExtender.Reload();
 		}
 	}

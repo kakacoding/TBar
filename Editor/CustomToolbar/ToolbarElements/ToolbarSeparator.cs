@@ -28,7 +28,7 @@ namespace CustomToolbar.Editor
 					label.style.color = Color.cyan;
 				}
 			}
-			container.Add(NumCtrl.Create(
+			container.Add(IntegerCtrl.Create(
 				()=>StrShow,
 				()=>SeparatorPx.ToString(),
 				v=>
@@ -37,7 +37,8 @@ namespace CustomToolbar.Editor
 					{
 						SeparatorPx = DefaultPx;
 					}
-				}));
+				},
+				new[]{5,10,15}));
 		}
 
 		protected override void OnDrawInToolbar(VisualElement container)

@@ -135,11 +135,11 @@
     max-width: 55px;
 }
 
-#NumCtrl {
+#IntegerCtrl {
     margin-left: 10px;
-    width: 155px;
+    width: 200px;
 }
-#NumCtrl .unity-label {
+#IntegerCtrl .unity-label {
     margin-top: -2px;
     min-width: 55px;
     max-width: 55px;

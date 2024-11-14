@@ -1,0 +1,13 @@
+{
+  "name": "com.kakacoding.tbar",
+  "version": "1.0.1",
+  "unity": "2021.3",
+  "author": {
+    "name": "kakacoding"
+  },
+  "displayName": "TBar",
+  "description": "\u81ea\u5b9a\u4e49Unity\u5f15\u64ce\u7684\u5de5\u5177\u680f",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+}

@@ -1,0 +1,347 @@
+/************************* Toolbar ***************************/
+/*编辑配置时工具栏区域背景色*/
+.ToolbarZone-Editing-Background{
+    background-color:  rgba(35,59,80,128);
+}
+/*非编辑配置时工具栏区域背景色*/
+.ToolbarZone-Background{
+    background-color: rgba(0,0,0,0);
+}
+/*左工具栏区域 (字体大小在这统一调整)*/
+#ToolbarLeftZone {
+    font-size: 15px;
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: row;
+    /*强行占满高度*/
+    margin-top: -3px;
+    margin-bottom: -3px;
+    /*子元素缩回原高度，需要时可以删除以扩大到Zone的高度*/
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+/*右工具栏区域 (字体大小在这统一调整)*/
+#ToolbarRightZone {
+    font-size: 15px;
+    flex-grow: 1;
+    justify-content: flex-start;
+    flex-direction: row;
+    /*强行占满高度*/
+    margin-top: -3px;
+    margin-bottom: -3px;
+    /*子元素缩回原高度，需要时可以删除以扩大到Zone的高度*/
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+/*-----------------工具栏带图标按钮-------------------*/
+#ImgToolbarBtnCtrl{
+    height: auto;
+    flex-shrink: 1;
+    -unity-text-align: middle-center;
+}
+#ImgToolbarBtnCtrl #Image{
+    flex-shrink: 0;
+    -unity-background-scale-mode: scale-to-fit;
+    min-width: 28px;
+}
+/************************* TitleContainer ***************************/
+#TitleContainer{
+    align-items: stretch;    
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+/************************* SeparatorContainer ***************************/
+#SeparatorContainer{
+    flex-shrink: 0;
+}
+/************************* AdjustContainer ***************************/
+#AdjustContainer{
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+#AdjustContainer #EnableCtrl {
+    margin-left: 12px;
+    flex-direction: row-reverse;
+    width: auto;
+}
+#AdjustContainer .unity-label {
+    -unity-font-style: bold;
+    min-width: auto;
+    max-width: none;
+    width: auto;
+}
+#AdjustContainer #unity-text-input{
+    -unity-font-style: bold;
+    height: 20px;
+    margin-top: -1px;
+    min-width: auto;
+    max-width: none;
+    margin-right: 10px;
+    width: auto;
+}
+/************************* ConfigContainer ***************************/
+#ConfigContainer{
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    -unity-font-style: bold;
+    margin-left: 10px;
+    margin-bottom: 3px;
+    height: 30px;
+    font-size: 15;
+    align-items: stretch;
+}
+#ConfigContainer #LabelConfig{
+    align-self: center;
+    width: 100px;
+}
+#ConfigContainer  #SelectConfig{
+    width: 150px;
+}
+#ConfigContainer .unity-button{
+    width: 70px;
+    height: auto;
+}
+#ConfigContainer #Image{
+    -unity-background-scale-mode: scale-to-fit;
+    width: 28px;
+}
+#ConfigContainer #TxtRename{
+    margin-left: 20px;
+    width: 150px;
+}
+#ConfigContainer #BtnCreate{
+    background-color: darkgreen;
+}
+#ConfigContainer #BtnDuplicate{
+    background-color: darkgoldenrod;
+}
+#ConfigContainer #BtnDel{
+    background-color: darkred;
+}
+#ConfigContainer #BtnRename{
+    background-color: darkslateblue;
+}
+/************************** RecordContainer *****************************/
+#RecordContainer{
+    flex-shrink: 0;
+    flex-direction: column;
+    font-size: 13px; /*统一在此处调节文字大小*/
+}
+
+/*-------------- 配置中每条记录的Container -------------*/
+#RecordContainer #ToolbarSettingRecordContainer {
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-self: auto;
+    flex-direction: row;
+    align-content: flex-start;
+}
+/*-------------- 分隔控件专用 --------------*/
+.RecordItemContainer{
+    background-color: rgba(0,0,0,0);
+}
+.RecordItemContainer-Side{
+    background-color: green;
+}
+/*-------------- listview --------------*/
+#ToolbarSettingListView {
+    flex-direction: column;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+    flex-shrink: 0;
+}
+#ToolbarSettingListView .unity-list-view__reorderable-item{
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+#ToolbarSettingListView .unity-list-view__reorderable-item__container{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: row;
+    align-items: stretch;
+    align-self: auto;
+}
+/*--------------------- 自定义控件 --------------------------*/
+#EnableCtrl {
+    margin-left: 10px;
+    flex-direction: row-reverse;
+    width: 170px;
+}
+#EnableCtrl .unity-toggle__input{
+    margin-top: 2px;
+}
+#EnableCtrl .unity-toggle__label{
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+.EnableCtrl-Separator .unity-label{
+    color: steelblue;   
+}
+
+#ToggleCtrl {
+    margin-left: 10px;
+    flex-direction: row;
+    flex-shrink: 1;
+    width: auto;
+}
+#ToggleCtrl .unity-toggle__input{
+    margin-top: 2px;
+}
+#ToggleCtrl .unity-toggle__label{
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+}
+
+#SceneMenu {
+    width: 150px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#TextureTextCtrl{
+    margin-left: 10px;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: stretch;
+    width: auto;
+}
+#TextureTextCtrl .unity-base-popup-field {
+    margin-left: 0;
+    width: 80px;
+}
+#TextureTextCtrl #TextureTextContainer {
+    flex-direction: row;
+}
+#TextureTextCtrl #TextureTextContainer .unity-object-field{
+    width: 160px;
+}
+#TextureTextCtrl #TextureTextContainer .unity-object-field .unity-label{
+    align-self: center;
+    padding-top: 0;
+}
+#TextureTextCtrl #TextureTextContainer .unity-object-field .unity-object-field__selector{
+    align-self: auto;
+    height: auto;
+    -unity-background-scale-mode: scale-to-fit;
+}
+#TextureTextCtrl #TextureTextContainer .unity-text-field{
+    width: 100px;
+}
+
+#MenuPathCtrl {
+    margin-left: 10px;
+    flex-grow: 1;
+    min-width: 300px;
+    width: auto;
+}
+#MenuPathCtrl .unity-label {
+    padding: 0;
+    width: 95px;
+    min-width: auto;
+    -unity-text-align: middle-left;
+}
+
+#PathCtrl {
+    margin-left: 10px;
+    flex-grow: 1;
+    min-width: 200px;
+    width: auto;
+}
+#PathCtrl .unity-label {
+    padding: 0;
+    width: 95px;
+    min-width: auto;
+    -unity-text-align: middle-left;
+}
+#PathCtrl .unity-button {
+    flex-shrink: 0;
+}
+
+#TextFieldCtrl {
+    margin-left: 10px;
+    min-width: 200px;
+}
+#TextFieldCtrl .unity-label {
+    padding: 0;
+    min-width: auto;
+    -unity-text-align: middle-left;
+}
+#TextFieldCtrl #unity-text-input {
+    padding: 0;
+    margin-left: 3px;
+    min-width: auto;
+    -unity-text-align: middle-left;
+}
+
+#IntegerCtrl {
+    margin-left: 10px;
+    width: 210px;
+}
+#IntegerCtrl .unity-label {
+    padding: 0;
+    -unity-text-align: middle-left;
+    width: 55px;
+    min-width: auto;
+}
+/************************* FootContainer ***************************/
+#FootContainer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    -unity-font-style: bold;
+    margin-left: 10px;
+    margin-bottom: 3px;
+    height: 40px;
+    font-size: 15;
+    align-items: stretch;
+}
+#FootContainer #BtnSave{
+    justify-content: center;
+    height: auto;
+    width: 200px;
+}
+#ConfigContainer #BtnSave #Image{
+    width: 35px;
+}
+
+/**************************** 废弃 ****************************************/
+
+
+#ImageButtonCtrl{
+    height: 20px;
+    padding: 0;
+    font-size: 15px;
+    flex-shrink: 0;
+    -unity-text-align: middle-center;
+}
+
+#ImageButtonCtrl .unity-help-box {
+    flex-shrink: 0;
+    background-color: rgba(63,63,63,0);
+    border-bottom-color: rgba(63,63,63,0);
+    border-top-color: rgba(63,63,63,0);
+    border-left-color: rgba(63,63,63,0);
+    border-right-color: rgba(63,63,63,0);
+    padding: 0;
+}
+
+#ImageButtonCtrl .unity-help-box .unity-help-box__label{
+    flex-shrink: 0;
+    padding: 0;
+    margin-left: 2;
+    margin-right: 2;
+    font-size: 12;
+    -unity-font-style: bold;
+}
+
+#ImageButtonCtrl .unity-help-box .unity-help-box__icon {
+    flex-shrink: 0;
+    min-width: 16px;
+    max-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
+}

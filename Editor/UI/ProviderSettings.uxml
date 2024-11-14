@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer">
+        <ui:Label text="TBar" display-tooltip-when-elided="true" name="Title" style="font-size: 25px; -unity-font-style: bold; white-space: nowrap; -unity-text-align: upper-left; justify-content: center; align-items: stretch; margin-top: 8px; margin-bottom: 5px; margin-left: 8px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="SeparatorContainer" style="height: 2px; align-items: center; justify-content: center; background-color: rgba(196, 196, 196, 0.38); margin-top: 5px; margin-bottom: 10px; padding-bottom: 0;" />
+    <ui:VisualElement name="AdjustContainer" style="flex-direction: row; justify-content: flex-start; align-items: center; flex-grow: 1; max-height: 25px;" />
+    <ui:VisualElement name="ConfigContainer" style="flex-direction: row;" />
+    <ui:VisualElement name="RecordContainer" />
+    <ui:VisualElement name="FootContainer" style="flex-direction: row;" />
+</ui:UXML>

@@ -39,6 +39,20 @@ namespace TBar.Editor
 				deactivateHandler = DeactivateHandler
 			};
 		}
+		
+		private static void ActivateHandler(string _, VisualElement rootElement)
+		{
+			ToolbarExtender.EnableZoneBackgroundColor = true;
+			var window = EditorGUIUtility.Load(UXML) as VisualTreeAsset;
+			if (window == null) return;
+			window.CloneTree(rootElement);
+			TBarUtility.AttachStyles(rootElement);
+			
+			ShowAdjustContainer(rootElement);
+			ShowConfigContainer(rootElement);
+			ShowScrollView(rootElement);
+			ShowFootContainer(rootElement);
+		}
 
 		private static void DeactivateHandler()
 		{
@@ -202,20 +216,6 @@ namespace TBar.Editor
 			btnImport.name = "BtnImport";
 			container.Add(btnImport);
 		}
-		private static void ActivateHandler(string _, VisualElement rootElement)
-		{
-			ToolbarExtender.EnableZoneBackgroundColor = true;
-			var window = EditorGUIUtility.Load(UXML) as VisualTreeAsset;
-			if (window == null) return;
-			window.CloneTree(rootElement);
-			TBarUtility.AttachStyles(rootElement);
-			
-			ShowAdjustContainer(rootElement);
-			ShowConfigContainer(rootElement);
-			ShowScrollView(rootElement);
-			ShowFootContainer(rootElement);
-		}
-
 		private static void ShowFootContainer(VisualElement rootElement)
 		{
 			var container = rootElement.Q<VisualElement>("FootContainer");
@@ -242,6 +242,7 @@ namespace TBar.Editor
 				reorderable = true,
 				showAddRemoveFooter = true,
 				showBorder = true,
+				//fixedItemHeight = 20,//设置listview的item高度，不设置默认30
 				makeItem = () =>
 				{
 					var container = new VisualElement

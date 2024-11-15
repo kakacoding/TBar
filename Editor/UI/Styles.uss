@@ -124,15 +124,40 @@
 }
 /************************** RecordContainer *****************************/
 #RecordContainer{
-    flex-shrink: 0;
+    flex-shrink: 1;
+    flex-grow: 1;
     flex-direction: column;
     font-size: 13px; /*统一在此处调节文字大小*/
+}
+
+/*-------------- listview --------------*/
+#ToolbarSettingListView {
+    flex-direction: column;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+    flex-shrink: 0;
+}
+#ToolbarSettingListView .unity-list-view__reorderable-item{
+    /*这两行决定了拖动排序时不会因为缩放而挤在一起造成最后一行无法上移，每行具体高度需要修改ListView的fixItemHeight */
+    flex-grow: 0;
+    flex-shrink: 0;
+    /*---------------------------------------------------*/
+    align-items: stretch;
+    justify-content: flex-start;
+}
+#ToolbarSettingListView .unity-list-view__reorderable-item__container{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: row;
+    align-items: stretch;
+    align-self: auto;
 }
 
 /*-------------- 配置中每条记录的Container -------------*/
 #RecordContainer #ToolbarSettingRecordContainer {
     flex-grow: 1;
-    flex-shrink: 0;
+    flex-shrink: 1;
     align-self: auto;
     flex-direction: row;
     align-content: flex-start;
@@ -143,27 +168,6 @@
 }
 .RecordItemContainer-Side{
     background-color: green;
-}
-/*-------------- listview --------------*/
-#ToolbarSettingListView {
-    flex-direction: column;
-    min-height: auto;
-    height: auto;
-    overflow: visible;
-    flex-shrink: 0;
-}
-#ToolbarSettingListView .unity-list-view__reorderable-item{
-    flex-grow: 1;
-    flex-shrink: 1;
-    align-items: stretch;
-    justify-content: flex-start;
-}
-#ToolbarSettingListView .unity-list-view__reorderable-item__container{
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-direction: row;
-    align-items: stretch;
-    align-self: auto;
 }
 /*--------------------- 自定义控件 --------------------------*/
 #EnableCtrl {

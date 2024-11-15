@@ -363,6 +363,10 @@ namespace TBar.Editor
 
 		private static bool IsToolbarElementValid(Type t)
 		{
+			if (t == typeof(ToolbarSides))
+			{
+				return TBarConfig.Instance.Elements.All(elem => elem.GetType() != t);
+			}
 			var methodInfo = t.GetMethod("IsValid", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 			if (methodInfo == null) return true;
 			var result = methodInfo.Invoke(null, null);

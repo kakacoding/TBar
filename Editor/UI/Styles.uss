@@ -124,8 +124,10 @@
 }
 /************************** RecordContainer *****************************/
 #RecordContainer{
-    flex-shrink: 1;
-    flex-grow: 1;
+    /*不能缩放，避免FooterContainer不跟紧贴RecordContainer*/
+    flex-shrink: 0;
+    flex-grow: 0;
+    /*-----------------------------------------------*/
     flex-direction: column;
     font-size: 13px; /*统一在此处调节文字大小*/
 }

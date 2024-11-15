@@ -17,8 +17,14 @@ namespace TBar.Editor
                 name = nameof(EnableCtrl),
                 value = toggleGetter.Invoke(),
                 label = labelGetter?.Invoke(),
-                tooltip = tooltipGetter?.Invoke()
+                tooltip = tooltipGetter?.Invoke(),
+                pickingMode = PickingMode.Ignore,
+                labelElement =
+                {
+                    pickingMode = PickingMode.Ignore
+                }
             };
+
             toggleBtn.RegisterValueChangedCallback(evt =>
             {
                 toggleSetter?.Invoke(evt.newValue);

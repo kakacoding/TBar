@@ -200,6 +200,7 @@
 #ToggleCtrl .unity-toggle__label{
     -unity-font-style: bold;
     -unity-text-align: middle-left;
+    min-width: auto;
 }
 
 #SceneMenu {

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-	internal abstract class BaseToolbarElement
+	public abstract class BaseToolbarElement
 	{
 		[JsonProperty]
 		protected bool IsEnabled = true;

@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal class TextFieldCtrl : VisualElement
+    public class TextFieldCtrl : VisualElement
     {
         internal delegate string LabelGetter();
         internal delegate string TextGetter();

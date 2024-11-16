@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal class ToggleCtrl : VisualElement
+    public class ToggleCtrl : VisualElement
     {
         internal delegate string LabelGetter();
         internal delegate string TooltipGetter();

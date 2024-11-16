@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal class TextureTextCtrl : VisualElement
+    public class TextureTextCtrl : VisualElement
     {
         internal delegate TBarUtility.ETextTextureDisplay DisplayGetter();
         internal delegate void DisplaySetter(TBarUtility.ETextTextureDisplay value);

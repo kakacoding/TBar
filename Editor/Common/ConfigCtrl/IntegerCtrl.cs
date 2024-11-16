@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal class IntegerCtrl : VisualElement
+    public class IntegerCtrl : VisualElement
     {
         internal delegate string LabelGetter();
         internal delegate int TextGetter();

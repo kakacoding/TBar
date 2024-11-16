@@ -298,6 +298,7 @@ namespace TBar.Editor
 								TBarConfig.Instance.Elements.Insert(idx, target as BaseToolbarElement);
 								_toolbarListView.Rebuild();
 								ToolbarExtender.Reload();
+								_toolbarListView.selectedIndex = idx;
 							}, Activator.CreateInstance(toolbarElementType));
 						}
 						else

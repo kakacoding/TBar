@@ -7,13 +7,13 @@ namespace TBar.Editor
 {
     internal class EnableCtrl : VisualElement
     {
-        internal delegate string IconNameGetter();
+        internal delegate string IconPathGetter();
         internal delegate string LabelGetter();
         internal delegate string TooltipGetter();
         internal delegate bool ToggleGetter();
         internal delegate void ToggleSetter(bool value);
         
-        internal static VisualElement Create(IconNameGetter iconNameGetter, LabelGetter labelGetter, ToggleGetter toggleGetter, ToggleSetter toggleSetter, TooltipGetter tooltipGetter = null)
+        internal static VisualElement Create(IconPathGetter iconPathGetter, LabelGetter labelGetter, ToggleGetter toggleGetter, ToggleSetter toggleSetter, TooltipGetter tooltipGetter = null)
         {
             var toggleBtn = new Toggle
             {
@@ -32,10 +32,22 @@ namespace TBar.Editor
                 name = "Icon",
                 pickingMode = PickingMode.Ignore,
             };
-            var iconName = iconNameGetter();
-            if (!string.IsNullOrEmpty(iconName))
+            var iconPath = iconPathGetter();
+            if (!string.IsNullOrEmpty(iconPath))
             {
-                icon.style.backgroundImage = new StyleBackground(EditorGUIUtility.Load(iconNameGetter()) as Texture2D);
+                var textureIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath);
+                if (textureIcon == null)
+                {
+                    textureIcon = Resources.Load<Texture2D>(iconPath);
+                }
+                if (textureIcon == null)
+                {
+                    textureIcon = EditorGUIUtility.Load(iconPathGetter()) as Texture2D;
+                }
+                if (textureIcon != null)
+                {
+                    icon.style.backgroundImage = new StyleBackground(textureIcon);
+                }
             }
             toggleBtn.Insert(1, icon);
             toggleBtn.RegisterValueChangedCallback(evt =>

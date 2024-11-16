@@ -34,15 +34,23 @@ namespace TBar.Editor
 
     internal class ToolbarElementDisplay : Attribute 
     {
+        public string Icon;
         public string Display;
         public string Detail;
 
-        public ToolbarElementDisplay(string display, string detail)
+        public ToolbarElementDisplay(string icon, string display, string detail)
         {
+            Icon = icon;
             Display = display;
             Detail = detail;
         }
 
+        public static string GeIcon(Type t)
+        {
+            var attr = GetCustomAttribute(t, typeof(ToolbarElementDisplay)) as ToolbarElementDisplay;
+            return attr?.Icon ?? "";
+        }
+        
         public static string GetDisplay(Type t)
         {
             var attr = GetCustomAttribute(t, typeof(ToolbarElementDisplay)) as ToolbarElementDisplay;

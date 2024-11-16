@@ -13,7 +13,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[Serializable]
-	[ToolbarElementDisplay("[下拉框]场景选择", "在工具栏上增加一个场景下拉框")]
+	[ToolbarElementDisplay("Dropdown@4x", "场景选择", "在工具栏上增加一个场景下拉框")]
 	internal class ToolbarSceneSelection : BaseToolbarElement
 	{
 		[JsonProperty]

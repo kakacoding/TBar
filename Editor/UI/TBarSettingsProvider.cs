@@ -63,7 +63,8 @@ namespace TBar.Editor
 		{
 			var ve = rootElement.Q<VisualElement>("AdjustContainer");
 			ve.Add(EnableCtrl.Create(
-				()=>"",
+				() => "",
+				() => "",
 				() => ToolbarExtender.EnableAdjustLeftZone,
 				v=>
 				{
@@ -86,6 +87,7 @@ namespace TBar.Editor
 			ve.Add(AdjustLeftZone);
 			
 			ve.Add(EnableCtrl.Create(
+				() => "",
 				() => "",
 				() => ToolbarExtender.EnableAdjustRightZone,
 				v=>

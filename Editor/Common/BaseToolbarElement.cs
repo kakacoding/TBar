@@ -30,6 +30,7 @@ namespace TBar.Editor
 		{
 			container.Clear();
 			container.Add(EnableCtrl.Create(
+				() => ToolbarElementDisplay.GeIcon(GetType()),
 				() => ToolbarElementDisplay.GetDisplay(GetType()),
 				() => IsEnabled,
 				v=> IsEnabled = v,

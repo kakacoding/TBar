@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[Serializable]
-	[ToolbarElementDisplay("[按钮]调用菜单", "在工具栏上增加一个按钮以打开指定的菜单，格式为【Help/About Unity】")]
+	[ToolbarElementDisplay("Button@4x", "调用菜单", "在工具栏上增加一个按钮以打开指定的菜单，格式为【Help/About Unity】")]
 	internal class ToolbarMenuInvoke : BaseToolbarElement
 	{
 		[JsonProperty]

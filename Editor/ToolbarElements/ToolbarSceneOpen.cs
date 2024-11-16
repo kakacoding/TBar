@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[Serializable]
-	[ToolbarElementDisplay("[按钮]打开场景", "在工具栏上增加一个按钮以打开指定的场景")]
+	[ToolbarElementDisplay("Button@4x", "打开场景", "在工具栏上增加一个按钮以打开指定的场景")]
 	internal class ToolbarSceneOpen : BaseToolbarElement
 	{
 		[JsonProperty]

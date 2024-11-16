@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[Serializable]
-	[ToolbarElementDisplay("[按钮]第三方程序调用", "在工具栏上增加一个按钮以打开第三方程序，格式为Application.dataPath的相对路径，或使用绝对路径")]
+	[ToolbarElementDisplay("Button@4x", "第三方程序调用", "在工具栏上增加一个按钮以打开第三方程序，格式为Application.dataPath的相对路径，或使用绝对路径")]
 	internal class ToolbarThirdPartyInvoke : BaseToolbarElement
 	{
 		[JsonProperty]

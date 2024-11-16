@@ -175,7 +175,11 @@
 #EnableCtrl {
     margin-left: 10px;
     flex-direction: row-reverse;
-    width: 170px;
+    width: 190px;
+}
+#EnableCtrl #Icon{
+    width: 30;
+    -unity-background-scale-mode: scale-to-fit;
 }
 #EnableCtrl .unity-toggle__input{
     margin-top: 2px;

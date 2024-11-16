@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEditorInternal;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace TBar.Editor
@@ -12,7 +10,12 @@ namespace TBar.Editor
     internal static partial class TBarUtility
     {
         private const string PACKAGE_NAME = "com.kakacoding.tbar";
-        private static readonly List<string> StyleFiles = new() {$"Packages/{PACKAGE_NAME}/Editor/UI/Styles.uss"};
+        private static readonly List<string> StyleFiles = new()
+        {
+            $"Packages/{PACKAGE_NAME}/Editor/UI/Styles.uss",
+            $"Packages/{PACKAGE_NAME}/Editor/UI/LocalStyles.uss",
+            $"Assets/Editor/TBar/LocalStyles.uss",
+        };
 
         internal static void AttachStyles(VisualElement visualElement)
         {

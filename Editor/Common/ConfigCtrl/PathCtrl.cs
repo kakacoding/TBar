@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR && TBAR
-using UnityEditor;
+using System;
+using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace TBar.Editor
@@ -9,8 +10,9 @@ namespace TBar.Editor
         internal delegate string LabelGetter();
         internal delegate string TextGetter();
         internal delegate void TextSetter(string value);
+        internal delegate string ButtonTextGetter();
         
-        internal static VisualElement Create(LabelGetter labelGetter, TextGetter textGetter, TextSetter textSetter)
+        internal static VisualElement Create(LabelGetter labelGetter, TextGetter textGetter, TextSetter textSetter, ButtonTextGetter buttonTextGetter,  Func<Task<string>> onClick)
         {
             var textField = new TextField(labelGetter.Invoke())
             {
@@ -22,16 +24,16 @@ namespace TBar.Editor
                 textSetter.Invoke(evt.newValue);
                 ToolbarExtender.Reload();
             });
-            var btnBrowser = new Button(() =>
+            var btnBrowser = new Button(async () =>
             {
-                var path = EditorUtility.OpenFilePanel("选择文件", "", "");
+                var path = await onClick.Invoke(); // 异步获取值（支持同步和异步）
                 if (!string.IsNullOrEmpty(path))
                 {
-                    textField.value = path;
+                    textField.value = path; // 更新 TextField
                 }
             })
             {
-                text = "选择文件"
+                text = buttonTextGetter()
             };
             textField.Add(btnBrowser);
             

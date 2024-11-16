@@ -9,7 +9,7 @@
 }
 /*左工具栏区域 (字体大小在这统一调整)*/
 #ToolbarLeftZone {
-    font-size: 15px;
+    font-size: 13px;
     flex-grow: 1;
     justify-content: flex-end;
     flex-direction: row;
@@ -22,7 +22,7 @@
 }
 /*右工具栏区域 (字体大小在这统一调整)*/
 #ToolbarRightZone {
-    font-size: 15px;
+    font-size: 13px;
     flex-grow: 1;
     justify-content: flex-start;
     flex-direction: row;

@@ -20,6 +20,7 @@ namespace TBar.Editor
 		internal string MenuInvokePath;
 		
 		private const string StrMenuPath = "调用的菜单路径";
+		private const string StrButton = "选择菜单";
 		private string Tooltip => $"调用菜单 {MenuInvokePath}";
 
 		public override string CountingSubKey
@@ -52,10 +53,12 @@ namespace TBar.Editor
 				v=>TexturePath=v
 				));
 
-			container.Add(MenuPathCtrl.Create(
-				()=>StrMenuPath,
-				()=>MenuInvokePath,
-				v=>MenuInvokePath=v
+			container.Add(PathCtrl.Create(
+				() => StrMenuPath,
+				() => MenuInvokePath,
+				v => MenuInvokePath=v,
+				() => StrButton,
+				async () => await MenuItemSelectWindow.ShowWindowAsync()
 			));
 		}
 

@@ -2,7 +2,9 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace TBar.Editor
@@ -24,6 +26,7 @@ namespace TBar.Editor
 		
 		private const string StrExecutePath = "调用的程序路径";
 		private const string StrParams = "调用参数";
+		private const string StrButton = "选择文件";
 		private string Tooltip => $"调用程序 {ExecutePath}";
 		
 		public override string CountingSubKey => Path.GetFileName(ExecutePath);
@@ -44,8 +47,9 @@ namespace TBar.Editor
 			container.Add(PathCtrl.Create(
 				() => StrExecutePath,
 				() => ExecutePath,
-				v=> ExecutePath=v
-			));
+				v => ExecutePath = v,
+				() => StrButton,
+				() => Task.FromResult(EditorUtility.OpenFilePanel(StrButton, "", ""))));//EditorUtility.OpenFilePanel(StrButton, "", "")));
 			
 			container.Add(TextFieldCtrl.Create(
 				() => StrParams,

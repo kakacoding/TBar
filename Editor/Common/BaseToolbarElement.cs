@@ -48,6 +48,7 @@ namespace TBar.Editor
 
 		protected void Counting()
 		{
+			ToolbarExtender.CountingCallback?.Invoke(GetType().Name, CountingSubKey);
 		}
 	}
 }

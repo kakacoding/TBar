@@ -24,6 +24,8 @@ namespace TBar.Editor
 		private const string StrShowFolder = "按目录层级显示";
 		//unity\Modules\UIServiceEditor\EditorToolbar\ToolbarElements\AccountDropdown.cs
 		
+		public override string CountingSubKey => sceneToolbarMenu?.text;
+		
 		class SceneData
 		{
 			public string guid;
@@ -76,7 +78,7 @@ namespace TBar.Editor
 
 			if (File.Exists(sceneData.fullPath))
 			{
-				EditorSceneManager.OpenScene(sceneData.fullPath);	
+				EditorSceneManager.OpenScene(sceneData.fullPath);
 				Counting();
 			}
 		}

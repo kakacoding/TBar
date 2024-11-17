@@ -25,6 +25,8 @@ namespace TBar.Editor
 		
 		private string Tooltip => string.IsNullOrEmpty(SceneName) ? StrSceneNull : $"打开场景 {SceneName}";
 
+		public override string CountingSubKey => SceneName;
+
 		protected override void OnDrawInSettings(VisualElement container)
 		{
 			base.OnDrawInSettings(container);

@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[InitializeOnLoad]
-	internal static class ToolbarExtender
+	public static class ToolbarExtender
 	{
 		private static readonly Type ToolbarType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Toolbar");
 		private static ScriptableObject CurrentToolbar { get; set; }
@@ -16,6 +16,8 @@ namespace TBar.Editor
 		private static VisualElement RightZoneContainer { get; set; }
 		
 		private static TBarConfig _config;
+		
+		public static Action<string, string> CountingCallback; 
 
 		static ToolbarExtender()
 		{
@@ -117,7 +119,7 @@ namespace TBar.Editor
 			}
 		}
 
-		public static bool EnableZoneBackgroundColor
+		internal static bool EnableZoneBackgroundColor
 		{
 			get => _enableZoneBackgroundColor;
 			set

@@ -23,22 +23,7 @@ namespace TBar.Editor
 		private const string StrButton = "选择菜单";
 		private string Tooltip => $"调用菜单 {MenuInvokePath}";
 
-		public override string CountingSubKey
-		{
-			get 
-			{
-				if (!string.IsNullOrEmpty(MenuInvokePath))
-				{
-					var arr = MenuInvokePath.Split('/');
-					if (arr.Length > 1)
-					{
-						return arr[^1].Replace(" ", "_");
-					}
-				}
-
-				return "";
-			}
-		}
+		public override string CountingSubKey => MenuInvokePath;
 		
 		protected override void OnDrawInSettings(VisualElement container)
 		{

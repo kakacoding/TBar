@@ -49,7 +49,7 @@ namespace TBar.Editor
 				() => ExecutePath,
 				v => ExecutePath = v,
 				() => StrButton,
-				() => Task.FromResult(EditorUtility.OpenFilePanel(StrButton, "", ""))));//EditorUtility.OpenFilePanel(StrButton, "", "")));
+				() => Task.FromResult(EditorUtility.OpenFilePanel(StrButton, "", ""))));
 			
 			container.Add(TextFieldCtrl.Create(
 				() => StrParams,

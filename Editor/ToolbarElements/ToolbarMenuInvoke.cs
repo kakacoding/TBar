@@ -3,6 +3,8 @@ using System;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine.UIElements;
+using System.Linq;
+using System.Reflection;
 
 namespace TBar.Editor
 {
@@ -43,7 +45,14 @@ namespace TBar.Editor
 				() => MenuInvokePath,
 				v => MenuInvokePath=v,
 				() => StrButton,
-				async () => await MenuItemSelectWindow.ShowWindowAsync()
+				async () => await SelectWindow.ShowWindowAsync("菜单列表", () =>
+				{
+					var methods = TypeCache.GetMethodsWithAttribute<MenuItem>();
+					return methods.SelectMany(method => method.GetCustomAttributes<MenuItem>().Select(attr => attr.menuItem))
+						.Distinct()
+						.OrderBy(item => item)
+						.ToList();
+				})
 			));
 		}
 

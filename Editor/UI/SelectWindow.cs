@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    public class MenuItemSelectWindow : EditorWindow
+    internal class SelectWindow : EditorWindow
     {
         private List<string> _allMenuItems = new(); // 所有菜单项
         private List<string> _filteredMenuItems = new(); // 过滤后的菜单项
@@ -25,11 +25,14 @@ namespace TBar.Editor
         /// 同步调用接口
         /// </summary>
         /// <param name="onSelectCallback"></param>
-        public static void ShowWindow(Action<string> onSelectCallback)
+        public static void ShowWindow(string title, Func<List<string>> loadItemFunc, Action<string> onSelectCallback)
         {
-            var window = GetWindow<MenuItemSelectWindow>("菜单列表 - 双击选择菜单");
+            var window = GetWindow<SelectWindow>($"{title} - 双击选择");
+            window.minSize = new Vector2(800, 800);
             window._onSelect = onSelectCallback;
-            window.LoadMenuItems();
+            window._allMenuItems = loadItemFunc?.Invoke();
+            if (window._allMenuItems != null) window._filteredMenuItems = new List<string>(window._allMenuItems);
+            window.RefreshListView();
             window.Show();
         }
 
@@ -37,11 +40,14 @@ namespace TBar.Editor
         /// 异步调用接口
         /// </summary>
         /// <returns></returns>
-        public static Task<string> ShowWindowAsync()
+        public static Task<string> ShowWindowAsync(string title, Func<List<string>> loadItemFunc)
         {
-            var window = GetWindow<MenuItemSelectWindow>("菜单列表 - 双击选择菜单");
+            var window = GetWindow<SelectWindow>($"{title} - 双击选择");
+            window.minSize = new Vector2(800, 800);
             window._taskCompletionSource = new TaskCompletionSource<string>();
-            window.LoadMenuItems();
+            window._allMenuItems = loadItemFunc?.Invoke();
+            if (window._allMenuItems != null) window._filteredMenuItems = new List<string>(window._allMenuItems);
+            window.RefreshListView();
             window.Show();
             return window._taskCompletionSource.Task;
         }

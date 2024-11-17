@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.UIElements;
+using System.Linq;
 
 namespace TBar.Editor
 {
@@ -18,14 +19,15 @@ namespace TBar.Editor
 		[JsonProperty]
 		internal string TexturePath;
 		[JsonProperty]
-		internal string SceneName;
+		internal string ScenePath;
 		
-		private const string StrSceneName = "场景名字";
+		private const string StrScenePath = "场景路径";
 		private const string StrSceneNull = "未设置场景名";
+		private const string StrButton = "选择场景";
 		
-		private string Tooltip => string.IsNullOrEmpty(SceneName) ? StrSceneNull : $"打开场景 {SceneName}";
+		private string Tooltip => string.IsNullOrEmpty(ScenePath) ? StrSceneNull : $"打开场景 {ScenePath}";
 
-		public override string CountingSubKey => SceneName;
+		public override string CountingSubKey => ScenePath;
 
 		protected override void OnDrawInSettings(VisualElement container)
 		{
@@ -40,10 +42,18 @@ namespace TBar.Editor
 				v=>TexturePath=v
 			));
 			
-			container.Add(TextFieldCtrl.Create(
-				()=>StrSceneName,
-				()=>SceneName,
-				v=>SceneName=v
+			container.Add(PathCtrl.Create(
+				()=>StrScenePath,
+				()=>ScenePath,
+				v=>ScenePath=v,
+				() => StrButton,
+				async () => await SelectWindow.ShowWindowAsync("场景列表", () =>
+				{
+					var sceneGuids = AssetDatabase.FindAssets("t:Scene");
+					var scenePaths = sceneGuids.Select(AssetDatabase.GUIDToAssetPath).ToList();
+					scenePaths.Sort();
+					return scenePaths;
+				})
 			));
 		}
 
@@ -56,23 +66,14 @@ namespace TBar.Editor
 				()=>Tooltip,
 				() =>
 				{
-					if (string.IsNullOrEmpty(SceneName))
+					if (string.IsNullOrEmpty(ScenePath))
 					{
 						TBarUtility.LogError(StrSceneNull);
 					}
 					else
 					{
-						var sceneGuids = AssetDatabase.FindAssets($"t:scene {SceneName}", new[] { "Assets" });
-						if (sceneGuids.Length > 0)
-						{
-							var path = AssetDatabase.GUIDToAssetPath(sceneGuids[0]);
-							EditorSceneManager.OpenScene(path);
-							Counting();
-						}
-						else
-						{
-							TBarUtility.LogError($"找不到需要打开的名为[{SceneName}]的场景");
-						}
+						EditorSceneManager.OpenScene(ScenePath);
+						Counting();
 					}
 				}));
 		}

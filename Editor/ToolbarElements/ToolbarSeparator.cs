@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 namespace TBar.Editor
 {
 	[Serializable]
-	[ToolbarElementDisplay("MinMaxSlider@4x", "插入间隔", "在功能控件之间插入间隔")]
+	[ToolbarElementDisplay("d_PauseButton On", "插入间隔", "在功能控件之间插入间隔")]
 	internal class ToolbarSeparator : BaseToolbarElement
 	{
 		[JsonProperty]

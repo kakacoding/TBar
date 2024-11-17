@@ -1,5 +1,6 @@
 #if UNITY_EDITOR && TBAR
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,16 +17,37 @@ namespace TBar.Editor
 		private SerializedObject _toolbarSettings;
 		private static ListView _toolbarListView;
 
-		private static readonly Type[] ToolbarElementTypes =
+		private static List<Type> ToolbarElementTypes
 		{
-			typeof(ToolbarMenuInvoke),
-			typeof(ToolbarThirdPartyInvoke),
-			typeof(ToolbarSeparator),
-			typeof(ToolbarSides),
-			typeof(ToolbarSceneOpen),
-			typeof(ToolbarSceneSelection),
-		};
+			get
+			{
+				if (_ToolbarElementTypes == null)
+				{
+					var allTypes = TypeCache.GetTypesDerivedFrom<BaseToolbarElement>();
+					var internalTypes = new List<Type>
+					{
+						typeof(ToolbarMenuInvoke),
+						typeof(ToolbarThirdPartyInvoke),
+						typeof(ToolbarSceneOpen),
+						typeof(ToolbarSceneSelection),
+						null,
+						typeof(ToolbarSeparator),
+						typeof(ToolbarSides),
+					};
+					
+					_ToolbarElementTypes = allTypes.Except(internalTypes).ToList();
+					if (_ToolbarElementTypes.Count > 0)
+					{
+						_ToolbarElementTypes.Add(null);
+					}
+					_ToolbarElementTypes.AddRange(internalTypes);
+				}
 
+				return _ToolbarElementTypes;
+			}
+		}
+
+		private static List<Type> _ToolbarElementTypes; 
 		private TBarSettingsProvider(string path, SettingsScope scopes = SettingsScope.User) : base(path, scopes)
 		{
 		}

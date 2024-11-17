@@ -32,7 +32,7 @@ namespace TBar.Editor
         }
     }
 
-    internal class ToolbarElementDisplay : Attribute 
+    public class ToolbarElementDisplay : Attribute 
     {
         public string Icon;
         public string Display;

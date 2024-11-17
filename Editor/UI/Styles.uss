@@ -175,21 +175,26 @@
 #EnableCtrl {
     margin-left: 10px;
     flex-direction: row-reverse;
-    width: 190px;
-}
-#EnableCtrl #Icon{
-    width: 30;
-    -unity-background-scale-mode: scale-to-fit;
+    width: 140px;
 }
 #EnableCtrl .unity-toggle__input{
     margin-top: 2px;
+    margin-right: 4px;
+}
+#EnableCtrl #Icon{
+    width: 34;
+    -unity-background-scale-mode: scale-to-fit;
 }
 #EnableCtrl .unity-toggle__label{
     -unity-font-style: bold;
     -unity-text-align: middle-left;
 }
+#EnableCtrl .unity-label{
+    min-width: 100px;
+}
+
 .EnableCtrl-Separator .unity-label{
-    color: steelblue;   
+    color: steelblue;
 }
 
 #ToggleCtrl {

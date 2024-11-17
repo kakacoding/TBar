@@ -23,12 +23,12 @@ namespace TBar.Editor
             {
                 name = nameof(TextureTextCtrl)
             };
-            
-            var enumField = new PopupField<TBarUtility.ETextTextureDisplay>(TBarUtility.TTDisplayMap.Keys.ToList(), 0, textureDisplay => TBarUtility.TTDisplayMap[textureDisplay]);
+
+            var enumField = new PopupField<string>(TBarUtility.TTDisplayMap.Values.ToList(), 0);
             enumField.RegisterValueChangedCallback(evt =>
             {
                 var newValue = evt.newValue;
-                displaySetter(newValue);
+                displaySetter(TBarUtility.TTDisplayMap.First(kv => kv.Value.Equals(newValue)).Key);
                 var textureTextContainer = container.Children().FirstOrDefault(child => child.name.Equals("TextureTextContainer"));
                 if (textureTextContainer != null)
                 {

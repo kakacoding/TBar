@@ -229,7 +229,7 @@
     flex-direction: row;
 }
 #TextureTextCtrl #TextureTextContainer .unity-object-field{
-    width: 160px;
+    width: 155px;
 }
 #TextureTextCtrl #TextureTextContainer .unity-object-field .unity-label{
     align-self: center;
@@ -241,20 +241,7 @@
     -unity-background-scale-mode: scale-to-fit;
 }
 #TextureTextCtrl #TextureTextContainer .unity-text-field{
-    width: 100px;
-}
-
-#MenuPathCtrl {
-    margin-left: 10px;
-    flex-grow: 1;
-    min-width: 300px;
-    width: auto;
-}
-#MenuPathCtrl .unity-label {
-    padding: 0;
-    width: 95px;
-    min-width: auto;
-    -unity-text-align: middle-left;
+    width: 155px;
 }
 
 #PathCtrl {
@@ -265,7 +252,7 @@
 }
 #PathCtrl .unity-label {
     padding: 0;
-    width: 95px;
+    width: 55px;
     min-width: auto;
     -unity-text-align: middle-left;
 }

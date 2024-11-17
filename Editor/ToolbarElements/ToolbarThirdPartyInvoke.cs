@@ -24,7 +24,7 @@ namespace TBar.Editor
 		[JsonProperty]
 		internal string Params;
 		
-		private const string StrExecutePath = "调用的程序路径";
+		private const string StrExecutePath = "程序路径";
 		private const string StrParams = "调用参数";
 		private const string StrButton = "选择文件";
 		private string Tooltip => $"调用程序 {ExecutePath}";

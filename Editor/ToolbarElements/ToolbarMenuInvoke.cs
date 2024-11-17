@@ -19,7 +19,7 @@ namespace TBar.Editor
 		[JsonProperty]
 		internal string MenuInvokePath;
 		
-		private const string StrMenuPath = "调用的菜单路径";
+		private const string StrMenuPath = "菜单路径";
 		private const string StrButton = "选择菜单";
 		private string Tooltip => $"调用菜单 {MenuInvokePath}";
 

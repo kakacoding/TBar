@@ -264,15 +264,40 @@ namespace TBar.Editor
 					}
 				}
 			};
-			_toolbarListView.itemIndexChanged += (_, _) =>
+			_toolbarListView.itemIndexChanged += (add, remove) =>
 			{
 				ToolbarExtender.Reload();
 			};
-			_toolbarListView.itemsRemoved += _ =>
+			_toolbarListView.Q<Button>("unity-list-view__remove-button").clickable = new Clickable(() =>
 			{
+				var idxes = _toolbarListView.selectedIndices.ToList();
+				if (idxes.Count == 0)
+				{
+					var count = _toolbarListView.itemsSource.Count;
+					if (count == 0) return;
+					
+					if (count > 0)
+					{
+						idxes.Add(count - 1);
+					}
+				}
+
+				for (var i = idxes.Count - 1; i >= 0; --i)
+				{
+					TBarConfig.Instance.Elements.RemoveAt(idxes[i]);	
+				}
 				_toolbarListView.Rebuild();
 				ToolbarExtender.Reload();
-			};
+				var curCount = _toolbarListView.itemsSource.Count;
+				if (curCount == 0) return;
+				var newSelectIdx = idxes[0];
+				if (curCount <= newSelectIdx)
+				{
+					newSelectIdx = curCount - 1;
+				}
+
+				_toolbarListView.selectedIndex = newSelectIdx;
+			});
 			_toolbarListView.Q<Button>("unity-list-view__add-button").clickable = new Clickable(() =>
 			{
 				var menu = new GenericMenu();

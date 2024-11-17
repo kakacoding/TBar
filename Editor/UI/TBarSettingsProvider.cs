@@ -138,7 +138,7 @@ namespace TBar.Editor
 			var labelConfig = new Label
 			{
 				name = "LabelConfig",
-				text = "选择预设配置",
+				text = "预设配置",
 			};
 			container.Add(labelConfig);
 			

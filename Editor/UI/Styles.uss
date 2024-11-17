@@ -60,7 +60,7 @@
     flex-shrink: 0;
 }
 #AdjustContainer #EnableCtrl {
-    margin-left: 12px;
+    margin-left: 6px;
     flex-direction: row-reverse;
     width: auto;
 }
@@ -93,7 +93,7 @@
 }
 #ConfigContainer #LabelConfig{
     align-self: center;
-    width: 100px;
+    width: 65px;
 }
 #ConfigContainer  #SelectConfig{
     width: 150px;

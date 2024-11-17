@@ -102,23 +102,6 @@ namespace TBar.Editor
 				_instance = new TBarConfig
 				{
 					Elements = new ()
-					{
-						new ToolbarMenuInvoke
-						{
-							SettingDisplayType = TBarUtility.ETextTextureDisplay.TextTexture,
-							BtnText = "Test",
-							TexturePath = "Packages/com.kakacoding.tbar/Editor/Resources/Command.png",
-							MenuInvokePath = "Help/About Unity"
-						},
-						new ToolbarSides(),
-						new ToolbarMenuInvoke
-						{
-							SettingDisplayType = TBarUtility.ETextTextureDisplay.TextTexture,
-							BtnText = "Test",
-							TexturePath = "Packages/com.kakacoding.tbar/Editor/Resources/Command.png",
-							MenuInvokePath = "Help/About Unity"
-						},
-					}
 				};
 				_instance.Save();
 				return _instance;

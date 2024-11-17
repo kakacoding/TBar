@@ -10,6 +10,7 @@
 /*左工具栏区域 (字体大小在这统一调整)*/
 #ToolbarLeftZone {
     font-size: 13px;
+    -unity-font-style: bold;
     flex-grow: 1;
     justify-content: flex-end;
     flex-direction: row;
@@ -23,6 +24,7 @@
 /*右工具栏区域 (字体大小在这统一调整)*/
 #ToolbarRightZone {
     font-size: 13px;
+    -unity-font-style: bold;
     flex-grow: 1;
     justify-content: flex-start;
     flex-direction: row;
@@ -44,6 +46,14 @@
     -unity-background-scale-mode: scale-to-fit;
     min-width: 28px;
 }
+
+/*-----------------工具栏下拉框-------------------*/
+#SceneMenu {
+    width: 150px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
 /************************* TitleContainer ***************************/
 #TitleContainer{
     align-items: stretch;    
@@ -213,12 +223,6 @@
     min-width: auto;
 }
 
-#SceneMenu {
-    width: 150px;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
 #TextureTextCtrl{
     margin-left: 10px;
     flex-direction: row;
@@ -283,7 +287,7 @@
 
 #IntegerCtrl {
     margin-left: 10px;
-    width: 210px;
+    width: 220px;
 }
 #IntegerCtrl .unity-label {
     padding: 0;
@@ -310,42 +314,4 @@
 }
 #ConfigContainer #BtnSave #Image{
     width: 35px;
-}
-
-/**************************** 废弃 ****************************************/
-
-
-#ImageButtonCtrl{
-    height: 20px;
-    padding: 0;
-    font-size: 15px;
-    flex-shrink: 0;
-    -unity-text-align: middle-center;
-}
-
-#ImageButtonCtrl .unity-help-box {
-    flex-shrink: 0;
-    background-color: rgba(63,63,63,0);
-    border-bottom-color: rgba(63,63,63,0);
-    border-top-color: rgba(63,63,63,0);
-    border-left-color: rgba(63,63,63,0);
-    border-right-color: rgba(63,63,63,0);
-    padding: 0;
-}
-
-#ImageButtonCtrl .unity-help-box .unity-help-box__label{
-    flex-shrink: 0;
-    padding: 0;
-    margin-left: 2;
-    margin-right: 2;
-    font-size: 12;
-    -unity-font-style: bold;
-}
-
-#ImageButtonCtrl .unity-help-box .unity-help-box__icon {
-    flex-shrink: 0;
-    min-width: 16px;
-    max-width: 16px;
-    min-height: 16px;
-    max-height: 16px;
 }

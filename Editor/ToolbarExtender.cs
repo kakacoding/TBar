@@ -174,17 +174,23 @@ namespace TBar.Editor
 		private static void GUILeft(VisualElement container) 
 		{
 			container.Clear();
-			var idx = _config.Elements.FindIndex(element => element is ToolbarSides);
-			DrawInToolbar(container, 0, idx != -1 ? idx : _config.Elements.Count);
+			if (_config != null && _config.Elements != null)
+			{
+				var idx = _config.Elements.FindIndex(element => element is ToolbarSides);
+				DrawInToolbar(container, 0, idx != -1 ? idx : _config.Elements.Count);
+			}
 		}
 		
 		private static void GUIRight(VisualElement container)
 		{
 			container.Clear();
-			var idx = _config.Elements.FindIndex(element => element is ToolbarSides);
-			if (idx < _config.Elements.Count && idx != -1) 
+			if (_config != null && _config.Elements != null)
 			{
-				DrawInToolbar(container, idx, _config.Elements.Count);	
+				var idx = _config.Elements.FindIndex(element => element is ToolbarSides);
+				if (idx < _config.Elements.Count && idx != -1)
+				{
+					DrawInToolbar(container, idx, _config.Elements.Count);
+				}
 			}
 		}
 

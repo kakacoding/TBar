@@ -103,8 +103,8 @@ namespace TBar.Editor
 		{
 			if (LeftZoneContainer != null)
 			{
+				//不设置minwidth，可以在unity窗口缩放时自动缩小TBar的LeftZone区域，与CustomToolbar的左边栏完美适配。
 				LeftZoneContainer.style.width = length;
-				LeftZoneContainer.style.minWidth = length;
 				LeftZoneContainer.style.maxWidth = length == StyleKeyword.Auto ? StyleKeyword.None : length;
 			}
 		}
@@ -113,8 +113,8 @@ namespace TBar.Editor
 		{
 			if (RightZoneContainer != null)
 			{
+				//在兼容CustomToolbar的模式下，无法完美缩放右区域，会挤占CustommToolbar的右边栏位置。目前没有解决办法。
 				RightZoneContainer.style.width = length;
-				RightZoneContainer.style.minWidth = length;
 				RightZoneContainer.style.maxWidth = length == StyleKeyword.Auto ? StyleKeyword.None : length;
 			}
 		}

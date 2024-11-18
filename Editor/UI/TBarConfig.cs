@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using UnityEditor;
 
@@ -111,12 +112,19 @@ namespace TBar.Editor
 		public string ExportConfigStr()
 		{
 			var jsonStr = JsonConvert.SerializeObject(this, Formatting.None, JsonSetting);
-			return $"{ConfigTitle}{Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonStr))}";
+			return $"{ConfigTitle}@#{Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonStr))}";
 		}
-		
+
+		private const string CONFIG_BASE64 = "configBase64";
 		public void ImportConfigStr(string configStr)
 		{
-			var base64Bytes = Convert.FromBase64String(configStr.Substring(ConfigTitle.Length)); // 将 Base64 字符串转换回字节数组
+			var match = Regex.Match(configStr, $"^.*@#(?<configBase64>.*)$", RegexOptions.Singleline);
+			if (!match.Success)
+			{
+				EditorUtility.DisplayDialog("TBar", "配置串无法识别！", "确定");
+				return;
+			}
+			var base64Bytes = Convert.FromBase64String(match.Result($"${{{CONFIG_BASE64}}}")); // 将 Base64 字符串转换回字节数组
 			var jsonStr = Encoding.UTF8.GetString(base64Bytes); 
 			_instance = JsonConvert.DeserializeObject<TBarConfig>(jsonStr, JsonSetting);
 			DuplicateCurConfig(NewDefaultName);

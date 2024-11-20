@@ -8,12 +8,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using Directory = System.IO.Directory;
+
 namespace TBar.Editor
 {
 	internal class TBarSettingsProvider : SettingsProvider
 	{
 		private const string UXML = "Packages/com.kakacoding.tbar/Editor/UI/ProviderSettings.uxml";
-		private const string SETTING_PROVIDER_PATH = "Project/TBar";
+		private const string SETTING_PROVIDER_PATH = "Preferences/TBar";
 		private SerializedObject _toolbarSettings;
 		private static ListView _toolbarListView;
 
@@ -55,7 +56,7 @@ namespace TBar.Editor
 		[SettingsProvider]
 		public static SettingsProvider CreateProvider()
 		{
-			return new SettingsProvider(SETTING_PROVIDER_PATH, SettingsScope.Project)
+			return new SettingsProvider(SETTING_PROVIDER_PATH, SettingsScope.User)
 			{
 				activateHandler = ActivateHandler,
 				deactivateHandler = DeactivateHandler

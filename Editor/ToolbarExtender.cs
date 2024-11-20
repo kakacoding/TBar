@@ -59,42 +59,38 @@ namespace TBar.Editor
 		}
 		internal static bool EnableAdjustLeftZone
 		{
-			get => PlayerPrefs.GetInt("EnableAdjustLeftZone", 0) == 1;
+			get => EditorPrefs.GetInt("EnableAdjustLeftZone", 0) == 1;
 			set
 			{
-				PlayerPrefs.SetInt("EnableAdjustLeftZone", value ? 1 : 0); 
-				PlayerPrefs.Save();
+				EditorPrefs.SetInt("EnableAdjustLeftZone", value ? 1 : 0); 
 				AdjustLeftZoneWidth(value ? LeftZoneWidth : StyleKeyword.Auto);
 			}
 		}
 		internal static bool EnableAdjustRightZone
 		{
-			get => PlayerPrefs.GetInt("EnableAdjustRightZone", 0) == 1;
+			get => EditorPrefs.GetInt("EnableAdjustRightZone", 0) == 1;
 			set
 			{
-				PlayerPrefs.SetInt("EnableAdjustRightZone", value ? 1 : 0); 
-				PlayerPrefs.Save();
+				EditorPrefs.SetInt("EnableAdjustRightZone", value ? 1 : 0); 
 				AdjustRightZoneWidth(value ? RightZoneWidth : StyleKeyword.Auto);
 			}
 		}
 
 		internal static int LeftZoneWidth
 		{
-			get => PlayerPrefs.GetInt("LeftZoneWidth", 0);
+			get => EditorPrefs.GetInt("LeftZoneWidth", 0);
 			set
 			{
-				PlayerPrefs.SetInt("LeftZoneWidth", value); 
-				PlayerPrefs.Save();
+				EditorPrefs.SetInt("LeftZoneWidth", value); 
 				AdjustLeftZoneWidth(value);
 			}
 		}
 		internal static int RightZoneWidth
 		{
-			get => PlayerPrefs.GetInt("RightZoneWidth", 0);
+			get => EditorPrefs.GetInt("RightZoneWidth", 0);
 			set
 			{
-				PlayerPrefs.SetInt("RightZoneWidth", value); 
-				PlayerPrefs.Save();
+				EditorPrefs.SetInt("RightZoneWidth", value); 
 				AdjustRightZoneWidth(value);
 			}
 		}
@@ -171,8 +167,9 @@ namespace TBar.Editor
 			_config.Elements.ForEach(element => element.Init());
 		}
 
-		private static void GUILeft(VisualElement container) 
+		private static void GUILeft(VisualElement container)
 		{
+			if (container == null) return;
 			container.Clear();
 			if (_config != null && _config.Elements != null)
 			{
@@ -183,6 +180,7 @@ namespace TBar.Editor
 		
 		private static void GUIRight(VisualElement container)
 		{
+			if (container == null) return;
 			container.Clear();
 			if (_config != null && _config.Elements != null)
 			{

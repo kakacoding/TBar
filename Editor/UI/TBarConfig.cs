@@ -80,7 +80,7 @@ namespace TBar.Editor
 	internal class TBarConfig : TBarConfigBase
 	{
 		public const string NewDefaultName = "NewConfig";
-		public const string ConfigDir = "ProjectSettings/TBar/";
+		public const string ConfigDir = "Library/TBar/Config/";
 		private static readonly string DefaultConfigPath = $"{ConfigDir}Default.json";
 		[JsonProperty]
 		internal List<BaseToolbarElement> Elements { get; set; } = new();

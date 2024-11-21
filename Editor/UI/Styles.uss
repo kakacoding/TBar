@@ -38,7 +38,7 @@
 /*-----------------工具栏带图标按钮-------------------*/
 #ImgToolbarBtnCtrl{
     height: auto;
-    flex-shrink: 1;
+    flex-shrink: 0;
     -unity-text-align: middle-center;
 }
 #ImgToolbarBtnCtrl #Image{

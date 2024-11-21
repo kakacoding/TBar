@@ -32,6 +32,7 @@ namespace TBar.Editor
 			{
 				style =
 				{
+					flexShrink = 1,
 					width = SeparatorPx,
 				}
 			};

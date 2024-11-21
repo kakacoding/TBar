@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR && TBAR
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -28,6 +29,29 @@ namespace TBar.Editor
 		private const string StrParams = "调用参数";
 		private const string StrButton = "选择文件";
 		private string Tooltip => $"调用程序 {ExecutePath}";
+
+		private static readonly List<string> EnvironmentVariables = new()
+		{
+			"%APPDATA%",
+			"%LOCALAPPDATA%",
+			"%TEMP%",
+			"%USERPROFILE%",
+		};
+
+		private static string ReplaceEnvironmentPath(string path)
+		{
+			path = Path.GetFullPath(path);
+			foreach (var environmentVariable in EnvironmentVariables)
+			{
+				var environmentPath = Environment.ExpandEnvironmentVariables(environmentVariable);
+				if (path.StartsWith(environmentPath))
+				{
+					return path.Replace(environmentPath, $"{environmentVariable}");
+				}
+			}
+
+			return path;
+		}
 		
 		public override string CountingSubKey => Path.GetFileName(ExecutePath);
 
@@ -49,7 +73,11 @@ namespace TBar.Editor
 				() => ExecutePath,
 				v => ExecutePath = v,
 				() => StrButton,
-				() => Task.FromResult(EditorUtility.OpenFilePanel(StrButton, "", ""))));
+				() =>
+				{
+					var path = EditorUtility.OpenFilePanel(StrButton, "", "");
+					return Task.FromResult(ReplaceEnvironmentPath(path));
+				}));
 			
 			container.Add(TextFieldCtrl.Create(
 				() => StrParams,

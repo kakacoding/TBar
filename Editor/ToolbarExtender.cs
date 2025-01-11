@@ -1,8 +1,6 @@
 #if UNITY_EDITOR
 using System;
 using System.Reflection;
-using Codice.Client.BaseCommands;
-using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -43,7 +41,7 @@ namespace TBar.Editor
 			var root = (VisualElement)CurrentToolbar.GetType().GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(CurrentToolbar);
 			TBarUtility.AttachStyles(root);
 			LeftZoneContainer = GetOrInsertToolbarZoneContainer(root, "ToolbarZoneLeftAlign", "ToolbarLeftZone", ""); 
-			RightZoneContainer = GetOrInsertToolbarZoneContainer(root, "ToolbarZoneRightAlign", "ToolbarRightZone", "");
+			RightZoneContainer = GetOrInsertToolbarZoneContainer(root, "ToolbarZoneRightAlign", "ToolbarRightZone", "History");
 			RefreshAdjustZone();
 			Reload();
 		}
@@ -172,7 +170,7 @@ namespace TBar.Editor
 			};
 			if (string.IsNullOrEmpty(insertBefore))
 			{
-				zone.Insert(0, container);
+				zone.Add(container);
 			}
 			else
 			{

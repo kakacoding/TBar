@@ -96,7 +96,7 @@
     flex-direction: row;
     width: 40px;
 }
-#AdjustContainer #EnableTBar #Icon{
+#AdjustContainer #EnableCtrl #Icon{
     -unity-background-scale-mode: scale-to-fit;
     width: 20px;
     height: 20px;

@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
 using System;
 using System.Reflection;
+using Codice.Client.BaseCommands;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -27,6 +29,7 @@ namespace TBar.Editor
 		}
 		private static void OnUpdate()
 		{
+			if (!EnableTBar) return;
 			if (CurrentToolbar != null)
 			{
 				_config?.Elements.ForEach(element => element.OnUpdate());
@@ -39,8 +42,8 @@ namespace TBar.Editor
 			
 			var root = (VisualElement)CurrentToolbar.GetType().GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(CurrentToolbar);
 			TBarUtility.AttachStyles(root);
-			LeftZoneContainer = GetOrCreateToolbarZoneContainer(root, "ToolbarZoneLeftAlign", "ToolbarLeftZone"); 
-			RightZoneContainer = GetOrCreateToolbarZoneContainer(root, "ToolbarZoneRightAlign", "ToolbarRightZone");
+			LeftZoneContainer = GetOrInsertToolbarZoneContainer(root, "ToolbarZoneLeftAlign", "ToolbarLeftZone", ""); 
+			RightZoneContainer = GetOrInsertToolbarZoneContainer(root, "ToolbarZoneRightAlign", "ToolbarRightZone", "");
 			RefreshAdjustZone();
 			Reload();
 		}
@@ -56,22 +59,41 @@ namespace TBar.Editor
 		{
 			AdjustLeftZoneWidth(EnableAdjustLeftZone ? LeftZoneWidth : StyleKeyword.Auto);
 			AdjustRightZoneWidth(EnableAdjustRightZone ? RightZoneWidth : StyleKeyword.Auto);
+			//启动后未创建过TBar，在开启TBar后，需要在下一帧刷新区域底色
+			EnableZoneBackgroundColor = EnableZoneBackgroundColor;
 		}
-		internal static bool EnableAdjustLeftZone
+
+		internal static bool EnableTBar
 		{
-			get => EditorPrefs.GetInt("EnableAdjustLeftZone", 0) == 1;
+			get
+			{
+				_enableTBar ??= EditorPrefs.GetBool("EnableTBar", false);
+				return _enableTBar.Value;
+			}
 			set
 			{
-				EditorPrefs.SetInt("EnableAdjustLeftZone", value ? 1 : 0); 
+				EditorPrefs.SetBool("EnableTBar", value);
+				_enableTBar = value;
+				//已创建过TBar后，开关TBar需要刷新区域底色
+				EnableZoneBackgroundColor = EnableZoneBackgroundColor;
+			}
+		}
+		private static bool? _enableTBar = null;
+		internal static bool EnableAdjustLeftZone
+		{
+			get => EditorPrefs.GetBool("EnableAdjustLeftZone", false);
+			set
+			{
+				EditorPrefs.SetBool("EnableAdjustLeftZone", value); 
 				AdjustLeftZoneWidth(value ? LeftZoneWidth : StyleKeyword.Auto);
 			}
 		}
 		internal static bool EnableAdjustRightZone
 		{
-			get => EditorPrefs.GetInt("EnableAdjustRightZone", 0) == 1;
+			get => EditorPrefs.GetBool("EnableAdjustRightZone", false);
 			set
 			{
-				EditorPrefs.SetInt("EnableAdjustRightZone", value ? 1 : 0); 
+				EditorPrefs.SetBool("EnableAdjustRightZone", value); 
 				AdjustRightZoneWidth(value ? RightZoneWidth : StyleKeyword.Auto);
 			}
 		}
@@ -121,7 +143,7 @@ namespace TBar.Editor
 			set
 			{
 				_enableZoneBackgroundColor = value;
-				if (_enableZoneBackgroundColor)
+				if (_enableZoneBackgroundColor && EnableTBar)
 				{
 					LeftZoneContainer?.RemoveFromClassList("ToolbarZone-Background");
 					LeftZoneContainer?.AddToClassList("ToolbarZone-Editing-Background");
@@ -141,14 +163,31 @@ namespace TBar.Editor
 		}
 
 		private static bool _enableZoneBackgroundColor;
-		private static VisualElement GetOrCreateToolbarZoneContainer(VisualElement root, string zoneName, string containerName)
+		private static VisualElement GetOrInsertToolbarZoneContainer(VisualElement root, string zoneName, string containerName, string insertBefore)
 		{
 			var zone = root.Q(zoneName); 
 			var container = zone.Q(containerName) ?? new VisualElement
 			{
 				name = containerName
 			};
-			zone.Add(container);
+			if (string.IsNullOrEmpty(insertBefore))
+			{
+				zone.Insert(0, container);
+			}
+			else
+			{
+				var count = zone.childCount;
+				var idx = 0;
+				for (var i = 0; i < count; ++i)
+				{
+					if(zone.ElementAt(i).name.Equals(insertBefore))
+					{
+						idx = i + 1;
+						break;
+					}
+				}
+				zone.Insert(idx, container);
+			}
 			return container;
 		}
 
@@ -171,6 +210,7 @@ namespace TBar.Editor
 		{
 			if (container == null) return;
 			container.Clear();
+			if (!EnableTBar) return;
 			if (_config != null && _config.Elements != null)
 			{
 				var idx = _config.Elements.FindIndex(element => element is ToolbarSides);
@@ -182,6 +222,7 @@ namespace TBar.Editor
 		{
 			if (container == null) return;
 			container.Clear();
+			if (!EnableTBar) return;
 			if (_config != null && _config.Elements != null)
 			{
 				var idx = _config.Elements.FindIndex(element => element is ToolbarSides);

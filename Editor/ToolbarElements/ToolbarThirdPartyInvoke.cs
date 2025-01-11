@@ -40,6 +40,7 @@ namespace TBar.Editor
 
 		private static string ReplaceEnvironmentPath(string path)
 		{
+			if (string.IsNullOrEmpty(path)) return path;
 			path = Path.GetFullPath(path);
 			foreach (var environmentVariable in EnvironmentVariables)
 			{

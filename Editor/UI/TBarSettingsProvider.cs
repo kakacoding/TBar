@@ -85,8 +85,19 @@ namespace TBar.Editor
 		private static void ShowAdjustContainer(VisualElement rootElement)
 		{
 			var ve = rootElement.Q<VisualElement>("AdjustContainer");
+			var enableTBar = EnableCtrl.Create(
+				() => "d_CustomTool@2x",
+				() => "启用TBar",
+				() => ToolbarExtender.EnableTBar,
+				v=>
+				{
+					ToolbarExtender.EnableTBar = v;
+					ToolbarExtender.Reload();
+				});
+			enableTBar.name = "EnableTBar";
+			ve.Add(enableTBar);
 			ve.Add(EnableCtrl.Create(
-				() => "",
+				() => "d_Slider Icon",
 				() => "",
 				() => ToolbarExtender.EnableAdjustLeftZone,
 				v=>
@@ -110,7 +121,7 @@ namespace TBar.Editor
 			ve.Add(AdjustLeftZone);
 			
 			ve.Add(EnableCtrl.Create(
-				() => "",
+				() => "d_Slider Icon",
 				() => "",
 				() => ToolbarExtender.EnableAdjustRightZone,
 				v=>
@@ -312,7 +323,11 @@ namespace TBar.Editor
 				_toolbarListView.Rebuild();
 				ToolbarExtender.Reload();
 				var curCount = _toolbarListView.itemsSource.Count;
-				if (curCount == 0) return;
+				if (curCount == 0)
+				{
+					_toolbarListView.selectedIndex = -1;
+					return;
+				}
 				var newSelectIdx = idxes[0];
 				if (curCount <= newSelectIdx)
 				{

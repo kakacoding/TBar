@@ -17,7 +17,7 @@ namespace TBar.Editor
 		
 		private static TBarConfig _config;
 		
-		public static Action<string, string> CountingCallback; 
+		public static Action<string, string> TrackingCallback; 
 
 		static ToolbarExtender()
 		{

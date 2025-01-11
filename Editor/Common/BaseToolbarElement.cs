@@ -48,7 +48,7 @@ namespace TBar.Editor
 
 		protected void Tracking()
 		{
-			ToolbarExtender.CountingCallback?.Invoke(GetType().Name, TrackingSubKey);
+			ToolbarExtender.TrackingCallback?.Invoke(GetType().Name, TrackingSubKey);
 		}
 	}
 }

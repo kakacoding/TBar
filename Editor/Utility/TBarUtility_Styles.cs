@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal static partial class TBarUtility
+    public static partial class TBarUtility
     {
         private const string PACKAGE_NAME = "com.kakacoding.tbar";
         private static readonly List<string> StyleFiles = new()

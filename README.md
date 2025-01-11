@@ -1,7 +1,6 @@
 # TBar
 ## 安装
 - 在 `PackageManager` 中使用 `Add package from git URL` 菜单添加。
-- 在 `Unity` 的 `Project Settings` - `Player` - `Script Define Symbols` 中添加宏 `TBAR`。
 ## 兼容性
 基于 `UnityEngine.UIElements` 开发，可与 [CustomToolbar](https://github.com/smkplus/CustomToolbar) 共存。
 

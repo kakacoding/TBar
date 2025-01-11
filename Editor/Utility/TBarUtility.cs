@@ -1,10 +1,10 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TBar.Editor
 {
-    internal static partial class TBarUtility
+    public static partial class TBarUtility
     {
         internal static void LogError(string log)
         {

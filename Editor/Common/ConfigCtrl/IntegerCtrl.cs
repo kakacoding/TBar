@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
@@ -6,11 +6,11 @@ namespace TBar.Editor
 {
     public class IntegerCtrl : VisualElement
     {
-        internal delegate string LabelGetter();
-        internal delegate int TextGetter();
-        internal delegate void TextSetter(int value);
+        public delegate string LabelGetter();
+        public delegate int TextGetter();
+        public delegate void TextSetter(int value);
         
-        internal static VisualElement Create(LabelGetter labelGetter, TextGetter textGetter, TextSetter textSetter, int[] ints)
+        public static VisualElement Create(LabelGetter labelGetter, TextGetter textGetter, TextSetter textSetter, int[] ints)
         {
             var integerField = new IntegerField(labelGetter.Invoke())
             {

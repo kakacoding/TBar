@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -9,14 +9,14 @@ namespace TBar.Editor
 {
     public class TextureTextCtrl : VisualElement
     {
-        internal delegate TBarUtility.ETextTextureDisplay DisplayGetter();
-        internal delegate void DisplaySetter(TBarUtility.ETextTextureDisplay value);
-        internal delegate string TextGetter();
-        internal delegate void TextSetter(string value);
-        internal delegate string TextureGetter();
-        internal delegate void TextureSetter(string value);
+        public delegate TBarUtility.ETextTextureDisplay DisplayGetter();
+        public delegate void DisplaySetter(TBarUtility.ETextTextureDisplay value);
+        public delegate string TextGetter();
+        public delegate void TextSetter(string value);
+        public delegate string TextureGetter();
+        public delegate void TextureSetter(string value);
         
-        internal static VisualElement Create(DisplayGetter displayGetter, DisplaySetter displaySetter, 
+        public static VisualElement Create(DisplayGetter displayGetter, DisplaySetter displaySetter, 
             TextGetter textGetter, TextSetter textSetter, TextureGetter textureGetter, TextureSetter textureSetter)
         {
             var container = new VisualElement

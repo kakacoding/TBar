@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 

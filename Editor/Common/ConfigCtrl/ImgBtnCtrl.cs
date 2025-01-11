@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,13 +7,13 @@ namespace TBar.Editor
 {
     public class ImgBtnCtrl : VisualElement
     {
-	    internal delegate TBarUtility.ETextTextureDisplay DisplayGetter();
-	    internal delegate string TextGetter();
-	    internal delegate string TextureGetter();
-	    internal delegate string TooltipGetter();
-	    internal delegate void Click();
+	    public delegate TBarUtility.ETextTextureDisplay DisplayGetter();
+	    public delegate string TextGetter();
+	    public delegate string TextureGetter();
+	    public delegate string TooltipGetter();
+	    public delegate void Click();
 
-        internal static VisualElement Create(DisplayGetter displayGetter, TextGetter textGetter, TextureGetter textureGetter, TooltipGetter tooltipGetter, Click onClick)
+	    public static VisualElement Create(DisplayGetter displayGetter, TextGetter textGetter, TextureGetter textureGetter, TooltipGetter tooltipGetter, Click onClick)
         {
             var imgBtn = new Button  
             {

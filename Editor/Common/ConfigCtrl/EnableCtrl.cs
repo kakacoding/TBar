@@ -1,19 +1,19 @@
-﻿#if UNITY_EDITOR && TBAR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace TBar.Editor
 {
-    internal class EnableCtrl : VisualElement
+    public class EnableCtrl : VisualElement
     {
-        internal delegate string IconPathGetter();
-        internal delegate string LabelGetter();
-        internal delegate string TooltipGetter();
-        internal delegate bool ToggleGetter();
-        internal delegate void ToggleSetter(bool value);
+        public delegate string IconPathGetter();
+        public delegate string LabelGetter();
+        public delegate string TooltipGetter();
+        public delegate bool ToggleGetter();
+        public delegate void ToggleSetter(bool value);
         
-        internal static VisualElement Create(IconPathGetter iconPathGetter, LabelGetter labelGetter, ToggleGetter toggleGetter, ToggleSetter toggleSetter, TooltipGetter tooltipGetter = null)
+        public static VisualElement Create(IconPathGetter iconPathGetter, LabelGetter labelGetter, ToggleGetter toggleGetter, ToggleSetter toggleSetter, TooltipGetter tooltipGetter = null)
         {
             var toggleBtn = new Toggle
             {

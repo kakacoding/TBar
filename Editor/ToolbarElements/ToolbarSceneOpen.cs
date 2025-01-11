@@ -27,7 +27,7 @@ namespace TBar.Editor
 		
 		private string Tooltip => string.IsNullOrEmpty(ScenePath) ? StrSceneNull : $"打开场景 {ScenePath}";
 
-		public override string CountingSubKey => ScenePath;
+		public override string TrackingSubKey => ScenePath;
 
 		protected override void OnDrawInSettings(VisualElement container)
 		{
@@ -73,7 +73,7 @@ namespace TBar.Editor
 					else
 					{
 						EditorSceneManager.OpenScene(ScenePath);
-						Counting();
+						Tracking();
 					}
 				}));
 		}

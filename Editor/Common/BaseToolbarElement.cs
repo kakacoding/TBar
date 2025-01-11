@@ -9,7 +9,7 @@ namespace TBar.Editor
 		[JsonProperty]
 		protected bool IsEnabled = true;
 		[JsonIgnore]
-		public virtual string CountingSubKey => "";
+		public virtual string TrackingSubKey => "";
 
 		protected BaseToolbarElement() 
 		{
@@ -46,9 +46,9 @@ namespace TBar.Editor
 		{
 		}
 
-		protected void Counting()
+		protected void Tracking()
 		{
-			ToolbarExtender.CountingCallback?.Invoke(GetType().Name, CountingSubKey);
+			ToolbarExtender.CountingCallback?.Invoke(GetType().Name, TrackingSubKey);
 		}
 	}
 }

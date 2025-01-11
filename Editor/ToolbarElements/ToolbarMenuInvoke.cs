@@ -25,7 +25,7 @@ namespace TBar.Editor
 		private const string StrButton = "选择菜单";
 		private string Tooltip => $"调用菜单 {MenuInvokePath}";
 
-		public override string CountingSubKey => MenuInvokePath;
+		public override string TrackingSubKey => MenuInvokePath;
 		
 		protected override void OnDrawInSettings(VisualElement container)
 		{
@@ -68,7 +68,7 @@ namespace TBar.Editor
 					if (!string.IsNullOrEmpty(MenuInvokePath))
 					{
 						EditorApplication.ExecuteMenuItem(MenuInvokePath);
-						Counting();
+						Tracking();
 					}
 				}));
 		}

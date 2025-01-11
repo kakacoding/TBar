@@ -54,7 +54,7 @@ namespace TBar.Editor
 			return path;
 		}
 		
-		public override string CountingSubKey => Path.GetFileName(ExecutePath);
+		public override string TrackingSubKey => Path.GetFileName(ExecutePath);
 
 		protected override void OnDrawInSettings(VisualElement container)
 		{
@@ -107,7 +107,7 @@ namespace TBar.Editor
 						var process = new Process();
 						process.StartInfo = startInfo;
 						process.Start();
-						Counting();
+						Tracking();
 					}
 				}));
 		}
